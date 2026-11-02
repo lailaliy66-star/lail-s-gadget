@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Jual Beli HP Terlengkap</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-brand-600 text-white p-2 rounded-xl shadow-md">
+                    <i class="fa-solid fa-mobile-screen-button text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-900 leading-tight">GadgetStore ID</h1>
+                    <p class="text-xs text-slate-500">Jual Beli HP Berbagai Merk</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button onclick="openAddModal()" class="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-sm font-medium transition shadow-sm hover:shadow flex items-center space-x-2">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="hidden sm:inline">Tambah Produk</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Hero / Filter Section -->
+        <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight text-slate-900">Etalase Handphone</h2>
+                <p class="text-sm text-slate-500 mt-1">Pilih merk dan tipe HP impian Anda atau tambahkan produk baru ke etalase.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <button onclick="filterBrand('Semua')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-brand-600 text-white transition shadow-sm">Semua</button>
+                <button onclick="filterBrand('Samsung')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition">Samsung</button>
+                <button onclick="filterBrand('iPhone')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition">iPhone</button>
+                <button onclick="filterBrand('Xiaomi')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition">Xiaomi</button>
+                <button onclick="filterBrand('Oppo')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition">Oppo</button>
+                <button onclick="filterBrand('Vivo')" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition">Vivo</button>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Dynamic Cards inserted via JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden text-center py-16">
+            <div class="text-slate-300 text-5xl mb-3"><i class="fa-solid fa-box-open"></i></div>
+            <p class="text-slate-600 font-medium">Tidak ada produk ditemukan di etalase ini.</p>
+        </div>
+
+        <!-- Payment Info Section -->
+        <section class="mt-16 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+            <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center space-x-2">
+                <i class="fa-solid fa-wallet text-brand-600"></i>
+                <span>Metode Pembayaran Tersedia</span>
+            </h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-center">
+                <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center">
+                    <span class="font-bold text-blue-600 text-lg">DANA</span>
+                    <span class="text-xs text-slate-500 mt-1">E-Wallet</span>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center">
+                    <span class="font-bold text-indigo-600 text-lg">OVO</span>
+                    <span class="text-xs text-slate-500 mt-1">E-Wallet</span>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center">
+                    <span class="font-bold text-red-600 text-lg">QRIS</span>
+                    <span class="text-xs text-slate-500 mt-1">Scan & Pay</span>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center">
+                    <span class="font-bold text-cyan-600 text-lg">BCA</span>
+                    <span class="text-xs text-slate-500 mt-1">Transfer Bank</span>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center">
+                    <span class="font-bold text-blue-800 text-lg">BRI</span>
+                    <span class="text-xs text-slate-500 mt-1">Transfer Bank</span>
+                </div>
+                <div class="p-4 rounded-xl border border-slate-100 bg-slate-50 flex flex-col items-center justify-center">
+                    <span class="font-bold text-yellow-600 text-lg">Mandiri / BJB</span>
+                    <span class="text-xs text-slate-500 mt-1">Transfer Bank</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-sm text-slate-500">
+        <p>&copy; 2026 GadgetStore ID. Layanan Jual Beli HP Aman & Terpercaya.</p>
+    </footer>
+
+    <!-- Add Product Modal -->
+    <div id="addModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative animate-in fade-in zoom-in duration-200">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold text-slate-900">Tambah HP ke Etalase</h3>
+                <button onclick="closeAddModal()" class="text-slate-400 hover:text-slate-600 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <form id="addProductForm" onsubmit="handleaddProduct(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Merk HP</label>
+                    <select id="inputBrand" required class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                        <option value="Samsung">Samsung</option>
+                        <option value="iPhone">iPhone</option>
+                        <option value="Xiaomi">Xiaomi</option>
+                        <option value="Oppo">Oppo</option>
+                        <option value="Vivo">Vivo</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Tipe / Model HP</label>
+                    <input type="text" id="inputModel" required placeholder="Contoh: Galaxy S24 Ultra" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Spesifikasi Singkat</label>
+                    <input type="text" id="inputSpecs" required placeholder="Contoh: 12GB/256GB - Garansi Resmi" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">Harga (Rp)</label>
+                    <input type="number" id="inputPrice" required placeholder="Contoh: 14500000" class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">URL Gambar (Opsional)</label>
+                    <input type="url" id="inputImage" placeholder="https://images.unsplash.com/..." class="w-full px-3 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+                </div>
+                <div class="flex justify-end space-x-3 pt-2">
+                    <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-600 text-sm font-medium hover:bg-slate-100 transition">Batal</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition shadow-sm">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div id="notifModal" class="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-3">
+        <i id="notifIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="notifText" class="text-sm font-medium">Berhasil</span>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Default Phone Data
+        let products = [
+            { id: 1, brand: 'Samsung', model: 'Galaxy S24 Ultra', specs: '12GB/256GB • Titanium Gray', price: 17999000, image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=500&q=80' },
+            { id: 2, brand: 'iPhone', model: 'iPhone 15 Pro Max', specs: '8GB/256GB • Natural Titanium', price: 21499000, image: 'https://images.unsplash.com/photo-1695048133142-1a20484d2569?auto=format&fit=crop&w=500&q=80' },
+            { id: 3, brand: 'Xiaomi', model: 'Xiaomi 14', specs: '12GB/256GB • Black', price: 11999000, image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=500&q=80' },
+            { id: 4, brand: 'Oppo', model: 'Oppo Find X7 Ultra', specs: '16GB/512GB • Leather Brown', price: 15499000, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80' },
+            { id: 5, brand: 'Vivo', model: 'Vivo X100 Pro', specs: '16GB/512GB • Asteroid Black', price: 13999000, image: 'https://images.unsplash.com/photo-1565849904461-04a58ad377e0?auto=format&fit=crop&w=500&q=80' },
+            { id: 6, brand: 'Samsung', model: 'Galaxy A55 5G', specs: '8GB/256GB • Awesome Iceblue', price: 5999000, image: 'https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=500&q=80' }
+        ];
+
+        let currentFilter = 'Semua';
+        const waNumber = '6281234567890'; // Ubah nomor WA tujuan pesanan di sini
+
+        function formatIDR(amount) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(amount);
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+            grid.innerHTML = '';
+
+            const filtered = currentFilter === 'Semua' 
+                ? products 
+                : products.filter(p => p.brand.toLowerCase() === currentFilter.toLowerCase());
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            filtered.forEach(p => {
+                const defaultImg = 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=500&q=80';
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div>
+                        <div class="h-48 bg-slate-100 overflow-hidden relative">
+                            <img src="${p.image || defaultImg}" alt="${p.model}" onerror="this.src='${defaultImg}'" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm">${p.brand}</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-slate-900 text-lg leading-tight mb-1">${p.model}</h4>
+                            <p class="text-xs text-slate-500 mb-3">${p.specs}</p>
+                            <p class="text-brand-600 font-extrabold text-lg">${formatIDR(p.price)}</p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0 grid grid-cols-2 gap-2">
+                        <button onclick="orderWA('${p.brand} ${p.model}', ${p.price})" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold py-2.5 px-3 rounded-xl transition flex items-center justify-center space-x-1.5 shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Beli / WA</span>
+                        </button>
+                        <button onclick="deleteProduct(${p.id})" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold py-2.5 px-3 rounded-xl transition flex items-center justify-center space-x-1.5">
+                            <i class="fa-solid fa-trash text-xs"></i>
+                            <span>Hapus</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterBrand(brand) {
+            currentFilter = brand;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.innerText.toLowerCase() === brand.toLowerCase()) {
+                    btn.className = 'filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-brand-600 text-white transition shadow-sm';
+                } else {
+                    btn.className = 'filter-btn px-4 py-2 rounded-xl text-sm font-medium bg-white border border-slate-200 text-slate-600 hover:bg-slate-100 transition';
+                }
+            });
+            renderProducts();
+        }
+
+        function openAddModal() {
+            document.getElementById('addModal').classList.remove('hidden');
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').classList.add('hidden');
+            document.getElementById('addProductForm').reset();
+        }
+
+        function handleaddProduct(e) {
+            e.preventDefault();
+            const brand = document.getElementById('inputBrand').value;
+            const model = document.getElementById('inputModel').value;
+            const specs = document.getElementById('inputSpecs').value;
+            const price = Number(document.getElementById('inputPrice').value);
+            const image = document.getElementById('inputImage').value;
+
+            const newProduct = {
+                id: Date.now(),
+                brand,
+                model,
+                specs,
+                price,
+                image
+            };
+
+            products.unshift(newProduct);
+            renderProducts();
+            closeAddModal();
+            showNotif('HP berhasil ditambahkan ke etalase!');
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus HP ini dari etalase?')) {
+                products = products.filter(p => p.id !== id);
+                renderProducts();
+                showNotif('HP berhasil dihapus dari etalase.', 'rose');
+            }
+        }
+
+        function orderWA(productName, price) {
+            const message = `Halo Admin GadgetStore ID, saya tertarik ingin memesan HP *${productName}* seharga *${formatIDR(price)}*. Bagaimana ketersediaan stok dan cara pembayarannya?`;
+            const encoded = encodeURIComponent(message);
+            window.open(`https://wa.me/${waNumber}?text=${encoded}`, '_blank');
+        }
+
+        function showNotif(text, type = 'emerald') {
+            const modal = document.getElementById('notifModal');
+            const notifText = document.getElementById('notifText');
+            const notifIcon = document.getElementById('notifIcon');
+
+            notifText.innerText = text;
+            if (type === 'rose') {
+                notifIcon.className = 'fa-solid fa-circle-exclamation text-rose-400';
+            } else {
+                notifIcon.className = 'fa-solid fa-circle-check text-emerald-400';
+            }
+
+            modal.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Initial Render
+        window.onload = function() {
+            renderProducts();
+        }
+    </script>
+</body>
+</html>
